@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+{% block body %}
+    <div class="container">
+        <form method="post" class="p-5" style="margin-top: 100px;"  action="{{ changePassword }}">
+            <div class="p-5">
+                <input type="email" value="{{ email }}" style="display: none" name="email" id="inputEmail" class="form-control" autofocus>
+                <label for="inputPassword">New Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" required>
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+            </div>
+            <div class="container" style="margin-left: 40px; margin-top: -50px;">
+                <button class="btn btn-lg btn-primary" type="submit">
+                    Reset
+                </button>
+            </div>
+        </form>
+{% endblock %}

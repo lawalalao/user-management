@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Student{% endblock %}
+
+{% block body %}
+    <h2 class="text-center text-white" style="padding-top: 80px;padding-bottom: 30px;">Student</h2>
+
+    <table class="table container text-white text-center">
+        <thead>
+        <tr>
+            <th >Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Class</th>
+            <th>Marks</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>  {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% else %}
+                        <h3>pakistan</h3>
+                    {% endif %}</td>
+{#                <td>{{ student.name }}</td>#}
+{#                <td>{{ student.email }}</td>#}
+{#                <td >{{ student.password }}</td>#}
+{#                <td>{{ student.class }}</td>#}
+{#                <td >{{ student.marks }}</td>#}
+{#                <td >#}
+{#                    <a href="{{ path('student_show', {'id': student.id}) }}" class="text-white">show</a>#}
+{#                    <a href="{{ path('student_edit', {'id': student.id}) }}" class="text-white">edit</a>#}
+{#                </td>#}
+            </tr>
+        </tbody>
+    </table>
+
+{#       <h3 class="text-center"> <a href="{{ path('student_index') }}" class="text-white">back to list</a> </h3>#}
+{#      <h3 class="text-center"> <a href="{{ path('student_edit', {'id': student.id}) }}" class="text-white">edit</a></h3>#}
+{% endblock %}

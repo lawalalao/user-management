@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users{% endblock %}
+
+{% block body %}
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="{{ asset('styles/shards-dashboards.1.1.0.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/extras.1.1.0.min.css') }}">
+    <link href='{{ asset('packages/core/main.css') }}' rel='stylesheet' />
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+          integrity="sha256-siyOpF/pBWUPgIcQi17TLBkjvNgNQArcmwJB8YvkAgg=" crossorigin="anonymous"/>
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <body class="h-100"></body>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
+                <div class="main-navbar border-bottom"  style="height: 120px;">
+                    <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap p-0" >
+                        <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px; height: 100px;">
+                            <div class="d-table m-auto">
+                                <img style="width: 130px;position: relative;  margin: auto" src="{{ asset('images/psd-layers/testimal-2.png') }}" alt="SRVC"/>
+                            </div>
+                        </a>
+                        <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                            <i class="material-icons">&#xE5C4;</i>
+                        </a>
+                    </nav>
+                </div>
+
+                <div class="nav-wrapper ">
+                    <ul class="nav flex-column bg-light">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <span class="icon-holder">
+                                 <i class="fa fa-home"></i>
+                               </span>
+                                <span class="title">dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" >
+                            <a class="nav-link" href="{{ path('userList') }}" >
+                                 <span class="icon-holder">
+                                     <i class="fa fa-users" style="font-size: 23px;"></i>
+                                </span>
+                                <span class="title" style="font-size: 23px;">Users</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+            <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+
+                <!-- Main-navbar -->
+                <div class="main-navbar sticky-top bg-white" >
+                    <!-- Main Navbar -->
+                    <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
+                        <form action="" method="get" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
+                            <div class="input-group input-group-seamless ml-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                        </form>
+                        <ul class="navbar-nav border-left flex-row ">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    {% if app.user %}
+                                        <a href="{{ path('app_logout') }}" class="btn btn-danger" style="margin-left: 1100px; margin-top: -35px;">Logout</a>
+                                    {% endif %}
+
+                                </a>
+                            </li>
+                        </ul>
+                        <nav class="nav">
+                            <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+                                <i class="material-icons">&#xE5D2;</i>
+                            </a>
+                        </nav>
+                    </nav>
+                </div>
+                <!-- / .main-navbar -->
+                <div class="main-content-container container-fluid px-4" style="background-image: url({{ asset('images/psd-layers/app-store-image.png') }}); background-repeat: no-repeat; background-size: contain">
+                    <!-- Page Header -->
+                    <div class="page-header row no-gutters py-4">
+                        <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+                            <span class="text-uppercase page-subtitle">Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <table class="table table-hover table-responsive-md">
+                                    <thead class="bg-info text-white">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">email</th>
+                                        <th scope="col">Account Type</th>
+                                        <th scope="col">Active</th>
+                                        <th scope="col">Valid</th>
+                                        <th scope="col">Phone</th>
+{#                                        <th scope="col">Actions</th>#}
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                    {% for student in students %}
+                                    <tr>
+                                        <td class="align-middle text-center">
+                                            <a href="">
+                                                {{ student.id }}
+                                            </a>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="">
+                                                {{ student.name }}
+                                            </a>
+                                        </td>
+                                        <td class="align-middle">
+                                            {{ student.firstName }}
+                                        </td>
+                                        <td class="align-middle">{{ student.email }}</td>
+                                        <td class="align-middle">{{ student.userType }}</td>
+                                        <td class="align-middle">
+                                            {{ student.isActive }}
+                                        </td>
+                                        <td class="align-middle">
+                                            {{ student.isValid }}
+                                        </td>
+                                        <td class="align-middle">
+                                            {{ student.phone }}
+                                        </td>
+                                    </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="2">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

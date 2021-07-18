@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Home!{% endblock %}
+{% block body %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-image: url("{{ asset('images/psd-layers/backgroud.png') }}");
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .topnav .icon {
+            display: none;
+        }
+    </style>
+    {% set success = app.session.flashBag.get('success') %}
+    <div class="topnav" id="myTopnav" style="padding-top: 20px;">
+        <a href="#" class="active">Home</a>
+    {% if app.user %}
+        <a href="{{ path('app_logout') }}" style="padding-left: 1100px;">Logout</a>
+        <a href="{% if app.user.userType == 'SIMPLE' %}
+                    {{ path('status_edit', { 'id': app.user.id, 'status': 'PRO' }) }}
+                {% elseif app.user.userType == 'PRO' %}
+                    {{ path('status_edit', { 'id': app.user.id, 'status': 'SIMPLE' }) }}{% endif %}"
+                    style="padding-left: 15px;">
+                    Switch
+                {% if app.user.userType == 'SIMPLE' %}
+                    PRO
+                {% elseif app.user.userType == 'PRO' %} SIMPLE {% endif %}
+        </a>
+    {% else%}
+             <a href="{{ path('login') }}" style="padding-left: 1100px;">Login</a>
+
+    {% endif %}
+    <a href="{{ path('login') }}" style="padding-left: 10px;">Admin Login</a>
+    </div>
+        <div class="container p-5">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    {% for msg in  success %}
+                        <div class="col-md-12">
+                            {% if app.user %}
+                            <div class="alert alert-info">{{ msg }} {{ app.user.email }} <br>
+                                Your Account Status is {{ app.user.userType }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    <div class="services-area pt-115" style="margin-top: 100px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center">
+                        <h2 class="title">Public Adds</h2>
+                    </div><!-- section title -->
+                </div>
+            </div> <!-- row -->
+        </div>
+    </div>
+    <div class="who-we-are-area pb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 wow slideInUp" data-wow-duration=".5s" data-wow-delay="0s">
+                    <div class="what-we-do-item text-center mt-30">
+                        <i class="fal fa-laptop-code"></i>
+                        <h5 class="title">IT Soluations</h5>
+                        <p>Sed ut perspiciatis unde omnis iste natus error volup</p>
+                        {% if app.user %}
+                            {% if app.user.userType == 'PRO' %}
+                                <button class="btn btn-info" type="button" style="margin-top: 15px;">Publish</button>
+                            {% endif %}
+                        {% endif %}
+                    </div> <!-- what we do item -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 wow slideInUp" data-wow-duration="1s" data-wow-delay="0s">
+                    <div class="what-we-do-item text-center mt-30">
+                        <i class="fal fa-fingerprint"></i>
+                        <h5 class="title">Security System</h5>
+                        <p>Sed ut perspiciatis unde omnis iste natus error volup</p>
+                        {% if app.user %}
+                            {% if app.user.userType == 'PRO' %}
+                                <button class="btn btn-info" type="button" style="margin-top: 15px;">Publish</button>
+                            {% endif %}
+                        {% endif %}
+                    </div> <!-- what we do item -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 wow slideInUp" data-wow-duration="1.5s" data-wow-delay="0s">
+                    <div class="what-we-do-item text-center mt-30">
+                        <i class="fal fa-chalkboard"></i>
+                        <h5 class="title">Web Development</h5>
+                        <p>Sed ut perspiciatis unde omnis iste natus error volup</p>
+                        {% if app.user %}
+                            {% if app.user.userType == 'PRO' %}
+                                <button class="btn btn-info" type="button" style="margin-top: 15px;">Publish</button>
+                            {% endif %}
+                        {% endif %}
+                    </div> <!-- what we do item -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 wow slideInUp" data-wow-duration="2s" data-wow-delay="0s">
+                    <div class="what-we-do-item text-center mt-30">
+                        <i class="fal fa-database"></i>
+                        <h5 class="title">Database Security</h5>
+                        <p>Sed ut perspiciatis unde omnis iste natus error volup</p>
+                        {% if app.user %}
+                            {% if app.user.userType == 'PRO' %}
+                                <button class="btn btn-info" type="button" style="margin-top: 15px;">Publish</button>
+                            {% endif %}
+                        {% endif %}
+                    </div> <!-- what we do item -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </div>
+
+{% endblock %}
+

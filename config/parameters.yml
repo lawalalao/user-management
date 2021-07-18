@@ -1,0 +1,13 @@
+# app/config/parameters.yml
+parameters:
+  database_host:     localhost
+  database_name:     symfony
+  database_user:     root
+  database_password:
+    mailer_transport: smtp
+      mailer_host: 127.0.0.1
+      mailer_user: mubasharhussain428@gmail.com
+      mailer_password: axrskxaohtgrsktk
+
+
+# ..

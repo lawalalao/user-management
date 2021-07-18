@@ -1,3 +1,15 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+app_lucky_number:
+  path: /lucky/number
+  controller: App\Controller\LuckyController::number
+app_lucky_test:
+  path: /lucky/test
+  controller: App\Controller\LuckyController::test
+
+app_lucky_whetonez:
+  path: /lucky/whetonez
+  controller: App\Controller\LuckyController::notifications
+

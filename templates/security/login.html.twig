@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+{% set success = app.session.flashBag.get('success') %}
+
+{% block body %}
+<div class="container">
+    <form method="post" class="p-5" style="margin-top: 100px;">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        {% for msg in  success %}
+            <div class="col-md-12">
+                <div class="alert alert-info">{{ msg }}</div>
+            </div>
+        {% endfor %}
+           <div class="col-lg-12">
+               <h1 style="text-align: center; color: #1b1e21; margin-left: 400px;">Please sign in</h1>
+           </div>
+        <div class="p-5">
+            <label for="inputEmail">Email</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+            <label for="inputPassword">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+        </div>
+       <div class="container" style="margin-left: 40px; margin-top: -50px;">
+           <div class="container">
+               <div class="row">
+                   <button type="button" class="" id="openmodal"  style="background: none; border: none; color: #005cbf"> Forget Password</button>
+               </div>
+           </div>
+
+           <button class="btn btn-lg btn-primary" type="submit">
+               Sign in
+           </button>
+           <div class="container">
+               <div class="row p-2">
+                   <h5>if your  new user <a href="{{ register }}">Register</a>
+                   </h5>
+               </div>
+           </div>
+       </div>
+    </form>
+
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function (){
+
+            $('#openmodal').on('click',function (){
+                // $('.custom_width').css('max-width','385');
+                $('#rate_smallModal').modal('show');
+            });
+
+        });
+    </script>
+
+    <div id="rate_smallModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog model_width_3" style="">
+            <div class="modal-content contant_modal">
+                <div class="background_div">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+
+                    <form method="POST" action="{{ user_forget }}">
+                        <div class="price_main_div" style="margin-bottom: 10px;">
+                            <div class="price_visit">
+                                <h6>Register Email</h6>
+                                <input type="email" name="email">
+                            </div>
+                        </div><!--Price-->
+                        <button> Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div><!--modal-dialog-->
+    </div>
+{% endblock %}
